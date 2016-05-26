@@ -1,0 +1,38 @@
+<md-content flex>
+    <div layout="row" class="questions-form" layout-align="center center">
+        <form name="questionsForm">
+            <md-input-container class="md-block">
+                <label>Stel hier je vraag</label>
+                <textarea name="question" ng-model="form.question" required></textarea>
+                <div ng-messages="questionsForm.question.$error">
+                    <div ng-message="required">Dit is verplicht.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Je naam</label>
+                <input required name="name" ng-model="form.name">
+                <div ng-messages="questionsForm.name.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Je emailadres</label>
+                <input required type="email" name="email" ng-model="form.email" ng-pattern="/^.+@.+\..+$/" />
+                <div ng-messages="questionsForm.email.$error" role="alert">
+                    <div ng-message-exp="['required', 'pattern']">
+                        Je emailadres lijkt niet helemaal correct te zijn.
+                    </div>
+                </div>
+            </md-input-container>
+            <md-button ng-click="sendForm(form)" ng-disabled="!questionsForm.$valid">Verstuur je vraag</md-button>
+        </form>
+    </div>
+    <div ng-class="{'questions-send--visible': send}" class="questions-send">
+        <div layout="row" layout-align="center center">
+            Mercikes
+        </div>
+    </div>
+    <md-switch ng-model="send" aria-label="Switch 1">
+        Switch {{send}}
+    </md-switch>
+</md-content>

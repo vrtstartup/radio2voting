@@ -1,0 +1,18 @@
+<md-content flex>
+    <div layout="column" class="selection-form" layout-align="center start">
+        <div class="selection-description">
+            Welke vragen moet we met de redactie onderzoeken?
+        </div>
+        <div ng-repeat="(key, q) in questions" ng-click="selectQuestion(q.vraag, q.stemmen)">
+            {{q.vraag}}
+        </div>
+    </div>
+    <div ng-class="{'questions-send--visible': send}" class="questions-send">
+        <div layout="row" layout-align="center center">
+            Mercikes
+        </div>
+    </div>
+    <md-switch ng-model="send" aria-label="Switch 1">
+        Switch {{send}}
+    </md-switch>
+</md-content>
