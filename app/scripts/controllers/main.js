@@ -8,58 +8,29 @@
  * Controller of the hearkenApp
  */
 angular.module('hearkenApp')
-    .controller('MainCtrl', function($scope, $http) {
+    .controller('MainCtrl', function($scope, $firebaseArray, $routeParams) {
 
+
+        $scope.regio = $routeParams.regio;
         $scope.send = false;
 
+        var list = $firebaseArray(new Firebase('https://radio2form.firebaseio.com/questions'));
 
+        $scope.addQuestion = function(question) {
+            question.regio = $routeParams.regio;
+            question.votes = 0;
+            question.shortlist = false;
 
-
-        $scope.resetForm = function() {
-
-            $scope.form = {
-                name: '',
-                email: '',
-                questions: ''
-            };
-        };
-
-        var sendToZapier = function(question) {
-            var date = new Date();
-
-            if (question.name !== '' && question.email !== '' && question.question !== '') {
-                console.log(question);
-
-
-                $http({
-                    method: 'GET',
-                    url: 'https://zapier.com/hooks/catch/61620/uw2rt6/',
-                    params: {
-                        'name': question.name,
-                        'email': question.email,
-                        'question': question.question,
-                        'date': date,
-                    }
-                }).then(function() {
-                    $scope.send = true;
-                }, function(response) {
-                    console.log(response);
-                });
-
-            }
+            list.$add(question).then(function(ref) {
+                var id = ref.key();
+                console.log("added record with id " + id);
+                list.$indexFor(id); // returns location in the array
+                $scope.send = true;
+            });
 
         };
 
 
 
-
-        $scope.sendForm = function(question) {
-
-            sendToZapier(question);
-
-
-        };
-
-        $scope.resetForm();
 
     });

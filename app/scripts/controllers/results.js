@@ -8,41 +8,32 @@
  * Controller of the hearkenApp
  */
 angular.module('hearkenApp')
-    .controller('ResultsCtrl', function($scope, $http, Tabletop) {
+    .controller('ResultsCtrl', function($scope, $firebaseArray, $routeParams, localStorageService) {
+
+
+        var voted = localStorageService.get('voted');
+
+        if (voted === true) {
+            $scope.voted = true;
+        } else {
+            $scope.voted = false;
+
+        }
 
         $scope.send = false;
 
-        Tabletop.then(function(result) {
-            $scope.questions = result[0].Questions.elements;
-        });
 
+        $scope.regio = $routeParams.regio;
+        var list = $firebaseArray(new Firebase('https://radio2form.firebaseio.com/questions'));
+        $scope.list = list;
 
+        $scope.vote = function(item) {
+            console.log('voting');
+            item.votes = item.votes + 1;
+            $scope.list.$save(item);
+            $scope.send = true;
+            localStorageService.set('voted', true);
 
-        var sendToZapier = function(question, value) {
-            var date = new Date();
-
-            if (question.name !== '' && question.email !== '' && question.question !== '') {
-
-                $http({
-                    method: 'GET',
-                    url: 'https://zapier.com/hooks/catch/61620/uwtcba/',
-                    params: {
-                        'question': question,
-                        'value': value
-                    }
-                }).then(function() {
-                    $scope.send = true;
-                }, function(response) {
-                    console.log(response);
-                });
-
-            }
-
-        };
-
-        $scope.selectQuestion = function(question, value){
-            value++;
-            sendToZapier(question, value);
         };
 
     });

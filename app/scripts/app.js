@@ -17,28 +17,32 @@ angular
         'ngSanitize',
         'ngMessages',
         'ngMaterial',
-        'times.tabletop'
-
+        'firebase',
+        'LocalStorageModule'
     ])
     .config(function($routeProvider) {
         $routeProvider
-            .when('/main', {
+            .when('/main/:regio', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'main'
             })
-            .when('/results', {
+
+        .when('/results/:regio', {
                 templateUrl: 'views/results.html',
                 controller: 'ResultsCtrl',
                 controllerAs: 'results'
             })
+            .when('/admin', {
+                templateUrl: 'views/admin.html',
+                controller: 'AdminCtrl',
+                controllerAs: 'admin'
+            })
             .otherwise({
-                redirectTo: '/results'
+                redirectTo: '/main/limburg'
             });
     })
-    .config(function(TabletopProvider) {
-        TabletopProvider.setTabletopOptions({
-            key: 'https://docs.google.com/spreadsheets/d/1Je_PAYGueRsHhJGNDdGQexggBJ2vsK6RmRnwQAlK3ZA/pubhtml',
-            simpleSheet: false
-        });
+    .config(function(localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('radio2voting');
     });

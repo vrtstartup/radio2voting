@@ -1,142 +1,107 @@
 // bower:scss
 // endbower
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-body {
-    padding: 0;
-}
-
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-
-/* Custom page header */
-
-.header {
-    border-bottom: 1px solid #e5e5e5;
-    margin-bottom: 10px;
-    /* Make the masthead heading the same height as the navigation */
-    h3 {
-        margin-top: 0;
-        margin-bottom: 0;
-        line-height: 40px;
-        padding-bottom: 19px;
-    }
-}
-
-
-/* Custom page footer */
-
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-
-/* Main marketing message and sign up button */
-
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-    .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-    }
-}
-
-
-/* Supporting marketing content */
-
-.marketing {
-    margin: 40px 0;
-    p + h4 {
-        margin-top: 28px;
-    }
-}
-
-
-/* Responsive: Portrait tablets and up */
-
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
-}
-
 @import 'material';
-
-
 @font-face {
     font-family: 'markot';
-    src: url("../images/markot-webfont-webfont.woff2") format("woff2"), url("../fonts/markot-webfont-webfont.woff") format("woff");
+    src: url("../fonts/markot-webfont-webfont.woff2") format("woff2"), url("../fonts/markot-webfont-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: 'markot bold';
-    src: url("../images/markot-bold-webfont-webfont.woff2") format("woff2"), url("../fonts/markot-bold-webfont-webfont.woff") format("woff");
+    src: url("../fonts/markot-bold-webfont-webfont.woff2") format("woff2"), url("../fonts/markot-bold-webfont-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal
 }
-
-
-
 
 body {
     font-family: 'markot', Arial, sans - serif;
 }
 
+h1,
+p {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+h1 {
+    margin-bottom: 1rem !important;
+}
+
 .questions-form {
     max-width: 300px;
     overflow: hidden;
+    form {
+        width: 100%;
+    }
 }
 
 .questions-send {
+    color: white;
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 1;
-    left: 100%;
     top: 0;
     background-color: #7A000B;
-    -webkit-transition: left 1s;
-    transition: left 1s;
-    &--visible {
-        left: 0%;
-        -webkit-transition: left 1s;
-        transition: left 1s;
+}
+
+.fade.ng-enter {
+    transition: 0.5s linear all;
+    opacity: 0;
+    left: 100%;
+}
+
+
+/* The finishing CSS styles for the enter animation */
+
+.fade.ng-enter.ng-enter-active {
+    opacity: 1;
+    left: 0%;
+}
+
+.md-button {
+    color: white;
+    background-color: #7A000B;
+    opacity: 1;
+    margin: 0 0;
+    &[disabled] {
+        background-color: transparentize(#7A000B, .2);
     }
+}
+
+.shortlist {
+    &-questions {
+
+    }
+
+    &-icon {
+      width: 2rem;
+      height: 100%;
+      padding-right: .5rem;
+      &__svg{
+      fill:  #7A000B;
+      height: 2rem;
+      width: 2rem;
+
+    }
+
+    }
+    &-question {
+        transition: 0.5s linear all;
+        background-color: white;
+        color: #7A000B;
+        &:hover {
+            background-color: #7A000B;
+            color: white;
+            transition: 0.5s linear all;
+        }
+    }
+}
+
+md-list-item._md-button-wrap > div.md-button {
+  padding: 0 0 !important;
 }

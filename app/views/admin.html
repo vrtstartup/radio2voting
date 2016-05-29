@@ -1,0 +1,33 @@
+<md-radio-group ng-model="selectedRegio">
+    <md-radio-button ng-repeat="r in regios" ng-value="r.value" aria-label="regios">
+        {{ r.name }}
+    </md-radio-button>
+</md-radio-group>
+<md-list>
+    <md-list-item class="md-2-line" ng-repeat="item in list | filter:selectedRegio" ng-click="doNothing()">
+        <md-input-container class="md-block">
+            <md-checkbox ng-model="item.shortlist" aria-label="Shortlisted?" ng-change="list.$save(item)">
+            </md-checkbox>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Vraag</label>
+            <textarea name="question" ng-model="item.question" ng-change="list.$save(item)"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Naam</label>
+            <input name="name" ng-model="item.name" ng-change="list.$save(item)">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input name="email" ng-model="item.email" ng-change="list.$save(item)">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Regio</label>
+            <input name="regio" ng-model="item.regio" ng-change="list.$save(item)">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Stemmen</label>
+            <input name="votes" ng-model="item.votes" ng-change="list.$save(item)">
+        </md-input-container>
+        <md-button ng-click="list.$remove(item)">Verwijder</md-button>
+</md-list>

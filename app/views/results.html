@@ -1,18 +1,24 @@
 <md-content flex>
-    <div layout="column" class="selection-form" layout-align="center start">
-        <div class="selection-description">
+    <div layout="column" class="shortlist-form" layout-align="center start" layout-padding>
+        <h1>
             Welke vragen moet we met de redactie onderzoeken?
-        </div>
-        <div ng-repeat="(key, q) in questions" ng-click="selectQuestion(q.vraag, q.stemmen)">
-            {{q.vraag}}
-        </div>
+        </h1>
+        <md-list>
+            <md-list-item class="shortlist-questions" ng-repeat="item in list | filter:regio" ng-if="item.shortlist" ng-click="vote(item)">
+                <div class="shortlist-icon">
+                    <svg class="shortlist-icon__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                    </svg>
+                </div>
+                <p class="shortlist-question">{{item.question}}</p>
+            </md-list-item>
+        </md-list>
     </div>
-    <div ng-class="{'questions-send--visible': send}" class="questions-send">
-        <div layout="row" layout-align="center center">
-            Mercikes
-        </div>
+    <div ng-if="send" ng-class="{'questions-send--visible': send}" class="questions-send fade" layout="column" layout-align="center center" layout-padding>
+        <h1>Bedankt voor je stem.</h1>
     </div>
-    <md-switch ng-model="send" aria-label="Switch 1">
-        Switch {{send}}
-    </md-switch>
+       <div ng-if="voted"  class="questions-send fade" layout="column" layout-align="center center" layout-padding>
+        <h1>Je hebt al eens gestemd.</h1>
+    </div>
 </md-content>

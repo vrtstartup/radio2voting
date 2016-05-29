@@ -1,5 +1,7 @@
-<md-content flex>
-    <div layout="row" class="questions-form" layout-align="center center">
+<md-content flex layout-padding>
+    <h1>Wat wil jij weten over {{regio}}?</h1>
+    <p>Stel je vraag, en misschien gaat onze redactie op zoek naar het antwoord.</p>
+    <div layout="row" class="questions-form" layout-align="center start">
         <form name="questionsForm">
             <md-input-container class="md-block">
                 <label>Stel hier je vraag</label>
@@ -24,15 +26,11 @@
                     </div>
                 </div>
             </md-input-container>
-            <md-button ng-click="sendForm(form)" ng-disabled="!questionsForm.$valid">Verstuur je vraag</md-button>
+            <md-button style="width:100%" ng-click="addQuestion(form)" ng-disabled="!questionsForm.$valid">Verstuur je vraag</md-button>
         </form>
     </div>
-    <div ng-class="{'questions-send--visible': send}" class="questions-send">
-        <div layout="row" layout-align="center center">
-            Mercikes
-        </div>
+    <div ng-if="send" ng-class="{'questions-send--visible': send}" class="questions-send fade" layout="column" layout-align="center center" layout-padding>
+        <h1>Bedankt voor je inzending, {{form.name}}</h1>
+        <p>De redactie gaat meteen met je vraag aan de slag!</p>
     </div>
-    <md-switch ng-model="send" aria-label="Switch 1">
-        Switch {{send}}
-    </md-switch>
 </md-content>
