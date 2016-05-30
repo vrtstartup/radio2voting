@@ -1,9 +1,9 @@
 <md-content flex>
-    <p>Stel je vraag, en misschien gaat onze redactie op zoek naar het antwoord.</p>
+    <p>Waar wil jij onze reporter op afsturen? Laat het ons hier weten.</p>
     <div layout="row" class="questions-form" layout-align="center start">
         <form name="questionsForm">
             <md-input-container class="md-block">
-                <label>Stel hier je vraag</label>
+                <label>Jouw vraag/suggestie</label>
                 <textarea name="question" ng-model="form.question" required></textarea>
                 <div ng-messages="questionsForm.question.$error">
                     <div ng-message="required">Dit is verplicht.</div>
@@ -25,6 +25,13 @@
                     </div>
                 </div>
             </md-input-container>
+            <md-input-container class="md-block">
+                <label>Je telefoonnummer</label>
+                <input name="phone" ng-model="form.phone"/>
+            </md-input-container>
+
+
+
             <md-button style="width:100%" ng-click="addQuestion(form)" ng-disabled="!questionsForm.$valid">Verstuur je vraag</md-button>
         </form>
     </div>
