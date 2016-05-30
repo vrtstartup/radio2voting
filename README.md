@@ -7,6 +7,13 @@ version 0.15.1.
 
 Run `grunt` for building and `grunt serve` for preview.
 
+grunt build for building
+
+push to github (master)
+
+then: git subtree push --prefix dist origin gh-pages
+
+
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
