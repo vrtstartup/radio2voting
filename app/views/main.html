@@ -1,5 +1,4 @@
-<md-content flex layout-padding>
-    <h1>Wat wil jij weten over {{regio}}?</h1>
+<md-content flex>
     <p>Stel je vraag, en misschien gaat onze redactie op zoek naar het antwoord.</p>
     <div layout="row" class="questions-form" layout-align="center start">
         <form name="questionsForm">
@@ -14,7 +13,7 @@
                 <label>Je naam</label>
                 <input required name="name" ng-model="form.name">
                 <div ng-messages="questionsForm.name.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">Dit is verplicht.</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">

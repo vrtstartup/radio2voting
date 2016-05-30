@@ -1,8 +1,7 @@
 <md-content flex>
-    <div layout="column" class="shortlist-form" layout-align="center start" layout-padding>
-        <h1>
-            Welke vragen moet we met de redactie onderzoeken?
-        </h1>
+    <div layout="column" class="shortlist-form" layout-align="center start">
+    <p>Over welke van deze vragen vind jij dat Radio2 een reportage moet maken?</p>
+    <p>Stem door te klikken op jouw vraag naar keuze.</p>
         <md-list>
             <md-list-item class="shortlist-questions" ng-repeat="item in list | filter:regio" ng-if="item.shortlist" ng-click="vote(item)">
                 <div class="shortlist-icon">

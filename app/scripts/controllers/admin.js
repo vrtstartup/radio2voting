@@ -18,8 +18,8 @@ angular.module('hearkenApp')
         $scope.list = list;
 
         $scope.regios = [{
-            'name': 'Oost Vlaanderen',
-            'value': 'oost vlaanderen'
+            'name': 'Oost-Vlaanderen',
+            'value': 'oost-vlaanderen'
         }, {
             'name': 'Antwerpen',
             'value': 'antwerpen'
